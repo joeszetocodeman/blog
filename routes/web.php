@@ -1,12 +1,13 @@
 <?php
 
+use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
 Route::get('/', function () {
-    return Inertia::render('welcome', [
-        'canRegister' => Features::enabled(Features::registration()),
+    return Inertia::render('blog/index', [
+        'blogs' => Blog::latest()->get(),
     ]);
 })->name('home');
 
