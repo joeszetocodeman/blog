@@ -4,7 +4,7 @@ export default function BlogIndex({ blogs }: { blogs: App.Datas.BlogData[] }) {
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:max-w-4xl">
                     <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
-                        I am Codeman
+                        I am codeman
                     </h2>
                     <p className="mt-2 text-lg/8 text-gray-600 dark:text-gray-400">
                         here is somewhere to waste you time reading my blog...
@@ -48,7 +48,7 @@ export default function BlogIndex({ blogs }: { blogs: App.Datas.BlogData[] }) {
                                             </a>
                                         </h2>
                                         <p className="mt-5 text-sm/6 text-gray-600 dark:text-gray-400">
-                                            {blog.description}
+                                            {blog.content}
                                         </p>
                                     </div>
 

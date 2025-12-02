@@ -1,1 +1,0 @@
-import{c as s,j as r}from"./app-Qt-7Nwz3.js";/* empty css            */function p(n){const t=s.c(4),{blogs:o}=n;let e;t[0]!==o?(e=o.map(l),t[0]=o,t[1]=e):e=t[1];let i;return t[2]!==e?(i=r.jsx("div",{children:e}),t[2]=e,t[3]=i):i=t[3],i}function l(n){return r.jsx("h1",{children:n.title})}export{p as default};
