@@ -1,4 +1,4 @@
-FROM jokersk/babypat-base
+FROM serversideup/php:8.5-fpm-nginx
 
 USER www-data
 
