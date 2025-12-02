@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
-Route::get('/', function () {
-    return Inertia::render('blog/index', [
-        'blogs' => Blog::latest()->get(),
-    ]);
-})->name('home');
+Route::get('/',[\App\Http\Controllers\BlogController::class , 'index' ])->name('home');
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     Route::get('/', function () {
