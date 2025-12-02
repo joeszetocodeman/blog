@@ -219,10 +219,10 @@ store.form = storeForm
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::show
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:17
 * @route '/admin/blog/{blog}'
 */
-export const show = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -234,12 +234,16 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::show
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:17
 * @route '/admin/blog/{blog}'
 */
-show.url = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions) => {
+show.url = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { blog: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { blog: args.id }
     }
 
     if (Array.isArray(args)) {
@@ -251,7 +255,9 @@ show.url = (args: { blog: string | number } | [blog: string | number ] | string 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        blog: args.blog,
+        blog: typeof args.blog === 'object'
+        ? args.blog.id
+        : args.blog,
     }
 
     return show.definition.url
@@ -261,50 +267,50 @@ show.url = (args: { blog: string | number } | [blog: string | number ] | string 
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::show
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:17
 * @route '/admin/blog/{blog}'
 */
-show.get = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::show
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:17
 * @route '/admin/blog/{blog}'
 */
-show.head = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::show
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:17
 * @route '/admin/blog/{blog}'
 */
-const showForm = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::show
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:17
 * @route '/admin/blog/{blog}'
 */
-showForm.get = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::show
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:17
 * @route '/admin/blog/{blog}'
 */
-showForm.head = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -417,10 +423,10 @@ edit.form = editForm
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::update
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:24
 * @route '/admin/blog/{blog}'
 */
-export const update = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -432,12 +438,16 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::update
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:24
 * @route '/admin/blog/{blog}'
 */
-update.url = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions) => {
+update.url = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { blog: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
+        args = { blog: args.id }
     }
 
     if (Array.isArray(args)) {
@@ -449,7 +459,9 @@ update.url = (args: { blog: string | number } | [blog: string | number ] | strin
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        blog: args.blog,
+        blog: typeof args.blog === 'object'
+        ? args.blog.id
+        : args.blog,
     }
 
     return update.definition.url
@@ -459,30 +471,30 @@ update.url = (args: { blog: string | number } | [blog: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::update
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:24
 * @route '/admin/blog/{blog}'
 */
-update.put = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::update
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:24
 * @route '/admin/blog/{blog}'
 */
-update.patch = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::update
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:24
 * @route '/admin/blog/{blog}'
 */
-const updateForm = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -494,10 +506,10 @@ const updateForm = (args: { blog: string | number } | [blog: string | number ] |
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::update
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:24
 * @route '/admin/blog/{blog}'
 */
-updateForm.put = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -509,10 +521,10 @@ updateForm.put = (args: { blog: string | number } | [blog: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::update
-* @see app/Http/Controllers/Admin/BlogController.php:0
+* @see app/Http/Controllers/Admin/BlogController.php:24
 * @route '/admin/blog/{blog}'
 */
-updateForm.patch = (args: { blog: string | number } | [blog: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.patch = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
