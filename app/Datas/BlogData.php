@@ -31,6 +31,17 @@ readonly class BlogData implements Arrayable
         );
     }
 
+    public static function fromEmpty()
+    {
+        return new self(
+            id: 0,
+            title: '',
+            slug: '',
+            content: '',
+            created_at: now(),
+        );
+    }
+
     public function toArray(): array
     {
         return [

@@ -1,5 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { Head, Link } from '@inertiajs/react';
+import { Button } from '@/components/ui/button';
+import BlogController from '@/actions/App/Http/Controllers/Admin/BlogController';
 
 export default function AdminBlogIndexPage({ blogs }: {
     blogs: App.Datas.BlogData[];
@@ -8,6 +10,13 @@ export default function AdminBlogIndexPage({ blogs }: {
         <AppLayout>
             <Head title="Blog" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
+                <div>
+                    <Button asChild>
+                        <Link href={BlogController.create().url}>
+                            New blog
+                        </Link>
+                    </Button>
+                </div>
                 { blogs.map((blog) => {
                     return (
                         <Link
