@@ -23,9 +23,9 @@ class BlogController
         ]);
     }
 
-    public function update(Blog $blog)
+    public function update(Blog $blog, Request $request)
     {
-        $validated = request()->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:80',
             'slug' => 'required|string|max:50',
             'content' => 'required|string',

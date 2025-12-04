@@ -28,8 +28,7 @@ export default function AdminBlogDetailPage({
 
                 </div>
 
-                <AdminBlogForm blog={blog} action={  BlogController.update(blog.id).url  } method="POST" />
-
+                <AdminBlogForm blog={blog} action={  BlogController.update(blog.id).url  } method="PUT" />
             </div>
         </AppLayout>
     );

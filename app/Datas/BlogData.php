@@ -48,7 +48,7 @@ readonly class BlogData implements Arrayable
             'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
-            'content' => $this->content,
+            'content' => nl2br( $this->content),
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }
