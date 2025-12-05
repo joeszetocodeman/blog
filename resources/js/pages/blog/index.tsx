@@ -50,6 +50,7 @@ export default function BlogIndex({ blogs }: { blogs: App.Datas.BlogData[] }) {
                                                 {blog.title}
                                             </Link>
                                         </h2>
+
                                         <p className="mt-5 text-gray-600 dark:text-gray-400">
                                             <div
                                                 dangerouslySetInnerHTML={{ __html: blog.content }}
