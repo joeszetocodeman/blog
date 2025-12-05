@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
 Route::get('/',[\App\Http\Controllers\BlogController::class , 'index' ])->name('home');
+Route::get('blog/{blog}',[\App\Http\Controllers\BlogController::class , 'detail' ])->name('frontend.blog.detail');
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     Route::get('/', function () {

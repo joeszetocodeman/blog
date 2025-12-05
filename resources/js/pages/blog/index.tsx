@@ -1,3 +1,6 @@
+import BlogController from '@/actions/App/Http/Controllers/BlogController';
+import { Link } from '@inertiajs/react';
+
 export default function BlogIndex({ blogs }: { blogs: App.Datas.BlogData[] }) {
     return (
         <div className="bg-white py-24 sm:py-32 dark:bg-gray-900">
@@ -42,10 +45,10 @@ export default function BlogIndex({ blogs }: { blogs: App.Datas.BlogData[] }) {
                                     </div>
                                     <div className="group relative max-w-xl">
                                         <h2 className="mt-3 text-lg font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
-                                            <a href={blog.href}>
+                                            <Link href={BlogController.detail(blog.id).url} prefetch >
                                                 <span className="absolute inset-0" />
                                                 {blog.title}
-                                            </a>
+                                            </Link>
                                         </h2>
                                         <p className="mt-5 text-gray-600 dark:text-gray-400">
                                             <div

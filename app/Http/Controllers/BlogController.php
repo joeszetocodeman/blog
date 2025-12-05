@@ -15,4 +15,11 @@ class BlogController
         ]);
     }
 
+    public function detail(Blog $blog)
+    {
+        return Inertia::render('blog/detail', [
+            'blog' => BlogData::fromModel($blog),
+        ]);
+    }
+
 }
