@@ -26,7 +26,7 @@ export default function BlogIndex({ blogs }: { blogs: App.Datas.BlogData[] }) {
                                     </div>
                                 )}
                                 <div>
-                                    <div className="flex items-center gap-x-4 text-xs">
+                                    <div className="flex items-center gap-x-4">
                                         <time
                                             dateTime={blog.datetime}
                                             className="text-gray-500 dark:text-gray-400"
@@ -47,7 +47,7 @@ export default function BlogIndex({ blogs }: { blogs: App.Datas.BlogData[] }) {
                                                 {blog.title}
                                             </a>
                                         </h2>
-                                        <p className="mt-5 text-sm/6 text-gray-600 dark:text-gray-400">
+                                        <p className="mt-5 text-gray-600 dark:text-gray-400">
                                             <div
                                                 dangerouslySetInnerHTML={{ __html: blog.content }}
                                             />
