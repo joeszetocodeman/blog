@@ -13,6 +13,7 @@ readonly class BlogData implements Arrayable
     public function __construct(
         public int $id,
         public string $title,
+        public string $excerpt,
         public string $slug,
         public string $content,
         public Carbon $created_at,
@@ -25,6 +26,7 @@ readonly class BlogData implements Arrayable
         return new self(
             id: $blog->id,
             title: $blog->title,
+            excerpt: $blog->excerpt ?? '',
             slug: $blog->slug,
             content: $blog->content,
             created_at: $blog->created_at?? now(),
@@ -36,6 +38,7 @@ readonly class BlogData implements Arrayable
         return new self(
             id: 0,
             title: '',
+            excerpt: '',
             slug: '',
             content: '',
             created_at: now(),
@@ -47,6 +50,7 @@ readonly class BlogData implements Arrayable
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'excerpt' => $this->excerpt,
             'slug' => $this->slug,
             'content' => nl2br( $this->content),
             'created_at' => $this->created_at->toDateTimeString(),
