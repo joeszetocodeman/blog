@@ -45,7 +45,7 @@ export default function BlogIndex({ blogs }: { blogs: App.Datas.BlogData[] }) {
                                     </div>
                                     <div className="group relative max-w-xl">
                                         <h2 className="mt-3 text-lg font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
-                                            <Link href={BlogController.detail(blog.id).url} prefetch >
+                                            <Link viewTransition className="block" href={BlogController.detail(blog.id).url} prefetch style={{ 'view-transition-name': `blog-title-${blog.slug}` }} >
                                                 <span className="absolute inset-0" />
                                                 {blog.title}
                                             </Link>
