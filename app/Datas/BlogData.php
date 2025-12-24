@@ -2,9 +2,11 @@
 
 namespace App\Datas;
 
+use App\Actions\ContentTraveler;
 use App\Models\Blog;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\HtmlString;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
@@ -52,8 +54,14 @@ readonly class BlogData implements Arrayable
             'title' => $this->title,
             'excerpt' => $this->excerpt,
             'slug' => $this->slug,
-            'content' => nl2br( $this->content),
+            'content' => $this->transform($this->content),
             'created_at' => $this->created_at->toDateTimeString(),
         ];
+    }
+
+    protected function transform(string $content)
+    {
+        $traveler = new ContentTraveler();
+        return $traveler->handle($content);
     }
 }
