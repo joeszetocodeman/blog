@@ -35,16 +35,17 @@ class ContentTraveler
                     theme: Theme::CatppuccinFrappe,
                 )->withGutter();
 
-                 $this->matchCodes[$this->matchIndex++] = $highlightedCode->toString();
-                return '__@@_'. $this->matchIndex .'_@@__';
+                $this->matchCodes[$this->matchIndex++] = $highlightedCode->toString();
+                return '__@@_'.$this->matchIndex.'_@@__';
             },
             $content
         );
 
         $content = nl2br($content);
+        $content = str()->markdown($content);
 
         foreach ($this->matchCodes as $index => $code) {
-            $content = str_replace('__@@_'. ($index + 1) .'_@@__', $code, $content);
+            $content = str_replace('__@@_'.($index + 1).'_@@__', $code, $content);
         }
         return $content;
     }

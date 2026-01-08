@@ -15,10 +15,10 @@ class uploadController extends Controller
             'files.*' => 'image|max:10240', // max 10MB per file
         ]);
         $paths = collect($request->file('files'))->map(function (UploadedFile $file) {
-            return $file->store('uploads');
+            return $file->store('uploads', 's3');
         });
         return response()->json([
-            'data' => $paths->map(fn($path) => Storage::temporaryUrl($path, now()->addMinutes(30)))
+            'data' => $paths->map(fn($path) => Storage::disk('s3')->url($path))
         ]);
     }
 }
