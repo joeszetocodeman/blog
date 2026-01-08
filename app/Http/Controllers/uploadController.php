@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class uploadController extends Controller
+class UploadController extends Controller
 {
     public function __invoke(Request $request)
     {
@@ -18,7 +18,7 @@ class uploadController extends Controller
             return $file->store('uploads', 's3');
         });
         return response()->json([
-            'data' => $paths->map(fn($path) => Storage::disk('s3')->url($path))
+            'data' => $paths->map(fn($path) => Storage::disk('s3')->url($path)),
         ]);
     }
 }

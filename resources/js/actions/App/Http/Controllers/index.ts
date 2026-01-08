@@ -1,12 +1,12 @@
 import BlogController from './BlogController'
 import Admin from './Admin'
-import uploadController from './uploadController'
+import UploadController from './UploadController'
 import Settings from './Settings'
 
 const Controllers = {
     BlogController: Object.assign(BlogController, BlogController),
     Admin: Object.assign(Admin, Admin),
-    uploadController: Object.assign(uploadController, uploadController),
+    UploadController: Object.assign(UploadController, UploadController),
     Settings: Object.assign(Settings, Settings),
 }
 
