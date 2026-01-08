@@ -5,6 +5,7 @@ import { Form } from '@inertiajs/react';
 import { kebabCase } from 'lodash-es';
 import { Button } from '@/components/ui/button';
 import UploadableTextarea from '@/pages/admin/blog/components/UploadableTextarea';
+import { SimpleEditor } from '@/components/tiptap-templates/simple/simple-editor';
 
 export default function AdminBlogForm({ blog, action, method }: { blog: App.Datas.BlogData, action: string, method: 'PUT' | 'POST' }) {
     const slugEl = useRef<HTMLInputElement>(null);
@@ -48,7 +49,8 @@ export default function AdminBlogForm({ blog, action, method }: { blog: App.Data
                                 <h2 className="mb-2 text-sm font-medium text-muted-foreground">
                                     Content
                                 </h2>
-                                <UploadableTextarea blog={blog} />
+
+                                <SimpleEditor />
                             </div>
                         </div>
                         <div className="mt-4">
