@@ -25,6 +25,7 @@
         "prettier-plugin-organize-imports": "^4.1.0",
         "prettier-plugin-tailwindcss": "^0.6.11",
         "sass-embedded": "^1.97.2",
+        "shiki": "^3.21.0",
         "typescript-eslint": "^8.23.0"
     },
     "dependencies": {
