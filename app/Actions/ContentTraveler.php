@@ -23,13 +23,15 @@ class ContentTraveler
         $content = str_replace("\n```", "```", $content);
         $content = preg_replace_callback(
 //            '/```(.*?)\n?(.*?)```/s',
-            '/<code>(.*?)<\/code>/s',
+            '/<code\s?(.*?)>(.*?)<\/code>/s',
             function ($matches) use (&$content) {
-                $code = $matches[1];
+                $langClass = $matches[1];
+                $lang = str($langClass)->after('class="language-')->before('"')->toString() ?: 'php';
+                $code = $matches[2];
                 $code = htmlspecialchars_decode($code);
                 $code = trim($code);
 
-                $grammar = $this->mapLanguageToGrammar('php');
+                $grammar = $this->mapLanguageToGrammar($lang);
 
                 $highlightedCode = $this->phiki->codeToHtml(
                     code: $code,
