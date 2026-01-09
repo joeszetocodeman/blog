@@ -29,7 +29,7 @@ readonly class BlogData implements Arrayable
             title: $blog->title,
             excerpt: $blog->excerpt ?? '',
             slug: $blog->slug,
-            content: $blog->content,
+            content: $blog->converted_content,
             created_at: $blog->created_at ?? now(),
         );
     }
@@ -53,7 +53,7 @@ readonly class BlogData implements Arrayable
             'title' => $this->title,
             'excerpt' => $this->excerpt,
             'slug' => $this->slug,
-            'content' => $this->transform($this->content),
+            'content' => $this->content,
 //            'content' => $this->content,
             'created_at' => $this->created_at->toDateTimeString(),
         ];

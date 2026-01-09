@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Actions\ContentTraveler;
 use App\Actions\CreateBlogExcerpt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,7 @@ class Blog extends Model
         'title',
         'slug',
         'content',
+        'converted_content',
         'excerpt',
     ];
 
@@ -21,6 +23,8 @@ class Blog extends Model
     {
         static::saving(function ($model) {
             app(CreateBlogExcerpt::class)->handle($model, save: false);
+            $converted = app(ContentTraveler::class)->handle($model->content);
+            $model->converted_content = $converted;
         });
     }
 }
