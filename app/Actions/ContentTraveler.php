@@ -22,7 +22,7 @@ class ContentTraveler
     {
         $content = str_replace("\n```", "```", $content);
         $content = preg_replace_callback(
-            '/```(.*?)\n(.*?)```/s',
+            '/\\<code\\>(.*?)\n(.*?)\\</code\\>/s',
             function ($matches) use (&$content) {
                 $language = $matches[1];
                 $code = $matches[2];
@@ -40,9 +40,6 @@ class ContentTraveler
             },
             $content
         );
-
-        $content = nl2br($content);
-        $content = str()->markdown($content);
 
         foreach ($this->matchCodes as $index => $code) {
             $content = str_replace('__@@_'.($index + 1).'_@@__', $code, $content);

@@ -19,8 +19,7 @@ readonly class BlogData implements Arrayable
         public string $slug,
         public string $content,
         public Carbon $created_at,
-    )
-    {
+    ) {
     }
 
     public static function fromModel(Blog $blog): self
@@ -31,7 +30,7 @@ readonly class BlogData implements Arrayable
             excerpt: $blog->excerpt ?? '',
             slug: $blog->slug,
             content: $blog->content,
-            created_at: $blog->created_at?? now(),
+            created_at: $blog->created_at ?? now(),
         );
     }
 
@@ -55,6 +54,7 @@ readonly class BlogData implements Arrayable
             'excerpt' => $this->excerpt,
             'slug' => $this->slug,
             'content' => $this->transform($this->content),
+//            'content' => $this->content,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }
