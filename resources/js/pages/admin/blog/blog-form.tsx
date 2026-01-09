@@ -1,14 +1,21 @@
+import { SimpleEditor } from '@/components/tiptap-templates/simple/simple-editor';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useRef } from 'react';
 import { Form } from '@inertiajs/react';
 import { kebabCase } from 'lodash-es';
-import { Button } from '@/components/ui/button';
-import UploadableTextarea from '@/pages/admin/blog/components/UploadableTextarea';
-import { SimpleEditor } from '@/components/tiptap-templates/simple/simple-editor';
+import { useRef } from 'react';
 
-export default function AdminBlogForm({ blog, action, method }: { blog: App.Datas.BlogData, action: string, method: 'PUT' | 'POST' }) {
+export default function AdminBlogForm({
+    blog,
+    action,
+    method,
+}: {
+    blog: App.Datas.BlogData;
+    action: string;
+    method: 'PUT' | 'POST';
+}) {
     const slugEl = useRef<HTMLInputElement>(null);
+    const contentEl = useRef<HTMLInputElement>(null);
     return (
         <Form action={action} method={method}>
             {({ getData }) => {
@@ -49,8 +56,21 @@ export default function AdminBlogForm({ blog, action, method }: { blog: App.Data
                                 <h2 className="mb-2 text-sm font-medium text-muted-foreground">
                                     Content
                                 </h2>
-
-                                <SimpleEditor />
+                                <input
+                                    type="text"
+                                    ref={contentEl}
+                                    name="content"
+                                    defaultValue={blog.content}
+                                    className="hidden"
+                                />
+                                <SimpleEditor
+                                    content={blog.content}
+                                    onUpdate={({ editor }) => {
+                                        if (!contentEl.current) return;
+                                        contentEl.current.value =
+                                            editor.getHTML();
+                                    }}
+                                />
                             </div>
                         </div>
                         <div className="mt-4">
