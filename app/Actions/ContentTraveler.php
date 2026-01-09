@@ -22,12 +22,14 @@ class ContentTraveler
     {
         $content = str_replace("\n```", "```", $content);
         $content = preg_replace_callback(
-            '/\\<code\\>(.*?)\n(.*?)\\</code\\>/s',
+//            '/```(.*?)\n?(.*?)```/s',
+            '/<code>(.*?)<\/code>/s',
             function ($matches) use (&$content) {
-                $language = $matches[1];
-                $code = $matches[2];
+                $code = $matches[1];
+                $code = htmlspecialchars_decode($code);
+                $code = trim($code);
 
-                $grammar = $this->mapLanguageToGrammar($language);
+                $grammar = $this->mapLanguageToGrammar('php');
 
                 $highlightedCode = $this->phiki->codeToHtml(
                     code: $code,
@@ -35,16 +37,17 @@ class ContentTraveler
                     theme: Theme::CatppuccinFrappe,
                 )->withGutter();
 
-                $this->matchCodes[$this->matchIndex++] = $highlightedCode->toString();
-                return '__@@_'.$this->matchIndex.'_@@__';
+                return $highlightedCode->toString();
             },
             $content
         );
 
-        foreach ($this->matchCodes as $index => $code) {
-            $content = str_replace('__@@_'.($index + 1).'_@@__', $code, $content);
-        }
-        return $content;
+        return str()->markdown($content);
+
+//        foreach ($this->matchCodes as $index => $code) {
+//            $content = str_replace('__@@_'.($index + 1).'_@@__', $code, $content);
+//        }
+//        return $content;
     }
 
     protected function mapLanguageToGrammar(string $language): Grammar
