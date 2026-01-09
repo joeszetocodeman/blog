@@ -1,11 +1,13 @@
 'use client';
 
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import {
     EditorContent,
     EditorContext,
     EditorEvents,
     useEditor,
 } from '@tiptap/react';
+import { all, createLowlight } from 'lowlight';
 import { useEffect, useRef, useState } from 'react';
 
 // --- Tiptap Core Extensions ---
@@ -38,6 +40,7 @@ import '@/components/tiptap-node/image-node/image-node.scss';
 import { ImageUploadNode } from '@/components/tiptap-node/image-upload-node/image-upload-node-extension';
 import '@/components/tiptap-node/list-node/list-node.scss';
 import '@/components/tiptap-node/paragraph-node/paragraph-node.scss';
+import 'highlight.js/styles/a11y-dark.css';
 
 // --- Tiptap UI ---
 import { BlockquoteButton } from '@/components/tiptap-ui/blockquote-button';
@@ -77,6 +80,8 @@ import { handleImageUpload, MAX_FILE_SIZE } from '@/lib/tiptap-utils';
 
 // --- Styles ---
 import '@/components/tiptap-templates/simple/simple-editor.scss';
+
+const lowlight = createLowlight(all);
 
 const MainToolbarContent = ({
     onHighlighterClick,
@@ -223,6 +228,12 @@ export function SimpleEditor({
                     openOnClick: false,
                     enableClickSelection: true,
                 },
+                code: false,
+                codeBlock: false,
+            }),
+            CodeBlockLowlight.configure({
+                enableTabIndentation: true,
+                lowlight,
             }),
             HorizontalRule,
             TextAlign.configure({ types: ['heading', 'paragraph'] }),
