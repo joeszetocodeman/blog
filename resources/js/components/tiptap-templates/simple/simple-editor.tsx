@@ -1,6 +1,5 @@
 'use client';
 
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import {
     EditorContent,
     EditorContext,
@@ -228,12 +227,6 @@ export function SimpleEditor({
                     openOnClick: false,
                     enableClickSelection: true,
                 },
-                code: false,
-                codeBlock: false,
-            }),
-            CodeBlockLowlight.configure({
-                enableTabIndentation: true,
-                lowlight,
             }),
             HorizontalRule,
             TextAlign.configure({ types: ['heading', 'paragraph'] }),

@@ -18,6 +18,7 @@ readonly class BlogData implements Arrayable
         public string $excerpt,
         public string $slug,
         public string $content,
+        public array $json_content,
         public Carbon $created_at,
     ) {
     }
@@ -29,7 +30,8 @@ readonly class BlogData implements Arrayable
             title: $blog->title,
             excerpt: $blog->excerpt ?? '',
             slug: $blog->slug,
-            content: $blog->converted_content,
+            content: $blog->content,
+            json_content: $blog->json_content,
             created_at: $blog->created_at ?? now(),
         );
     }
@@ -42,6 +44,7 @@ readonly class BlogData implements Arrayable
             excerpt: '',
             slug: '',
             content: '',
+            json_content: [],
             created_at: now(),
         );
     }
@@ -54,7 +57,7 @@ readonly class BlogData implements Arrayable
             'excerpt' => $this->excerpt,
             'slug' => $this->slug,
             'content' => $this->content,
-//            'content' => $this->content,
+            'json_content' => $this->json_content,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

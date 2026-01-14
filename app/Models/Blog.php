@@ -15,16 +15,23 @@ class Blog extends Model
         'title',
         'slug',
         'content',
-        'converted_content',
+        'json_content',
         'excerpt',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'json_content' => 'array'
+        ];
+    }
 
     protected static function booted(): void
     {
         static::saving(function ($model) {
-            app(CreateBlogExcerpt::class)->handle($model, save: false);
-            $converted = app(ContentTraveler::class)->handle($model->content);
-            $model->converted_content = $converted;
+            $model->content = (new \Tiptap\Editor)->setContent($model->json_content)->getHTML();
         });
     }
+
+
 }

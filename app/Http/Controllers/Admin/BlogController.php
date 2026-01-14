@@ -12,7 +12,7 @@ class BlogController
     public function index()
     {
         return Inertia::render('admin/blog/index', [
-            'blogs' => Blog::latest()->get()->map(fn($blog) => BlogData::fromModel($blog) ),
+            'blogs' => Blog::latest()->get()->map(fn($blog) => BlogData::fromModel($blog)),
         ]);
     }
 
@@ -28,9 +28,8 @@ class BlogController
         $validated = $request->validate([
             'title' => 'required|string|max:80',
             'slug' => 'required|string|max:50',
-            'content' => 'required|string',
+            'json_content' => 'nullable|array',
         ]);
-
         $blog->update($validated);
 
         return back();
@@ -48,7 +47,7 @@ class BlogController
         $validated = $request->validate([
             'title' => 'required|string|max:80',
             'slug' => 'required|string|max:50',
-            'content' => 'required|string',
+            'json_content' => 'required|array',
         ]);
 
         Blog::create($validated);

@@ -45,11 +45,6 @@ class ContentTraveler
         );
 
         return str()->markdown($content);
-
-//        foreach ($this->matchCodes as $index => $code) {
-//            $content = str_replace('__@@_'.($index + 1).'_@@__', $code, $content);
-//        }
-//        return $content;
     }
 
     protected function mapLanguageToGrammar(string $language): Grammar

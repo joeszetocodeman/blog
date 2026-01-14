@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Form } from '@inertiajs/react';
 import { kebabCase } from 'lodash-es';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function AdminBlogForm({
     blog,
@@ -16,9 +16,20 @@ export default function AdminBlogForm({
 }) {
     const slugEl = useRef<HTMLInputElement>(null);
     const contentEl = useRef<HTMLInputElement>(null);
+    const [jsonContent, setJsonContent] = useState();
     return (
-        <Form action={action} method={method}>
-            {({ getData }) => {
+        <Form
+            action={action}
+            method={method}
+            transform={(data) => {
+                console.log(data);
+                return {
+                    ...data,
+                    json_content: jsonContent,
+                };
+            }}
+        >
+            {({ getData, errors }) => {
                 return (
                     <div>
                         <div className="space-y-6 rounded-lg border p-6">
@@ -56,21 +67,17 @@ export default function AdminBlogForm({
                                 <h2 className="mb-2 text-sm font-medium text-muted-foreground">
                                     Content
                                 </h2>
-                                <input
-                                    type="text"
-                                    ref={contentEl}
-                                    name="content"
-                                    defaultValue={blog.content}
-                                    className="hidden"
-                                />
+                                {/*<UploadableTextarea blog={blog} />*/}
+
                                 <SimpleEditor
-                                    content={blog.content}
+                                    content={blog.json_content}
                                     onUpdate={({ editor }) => {
-                                        if (!contentEl.current) return;
-                                        contentEl.current.value =
-                                            editor.getHTML();
+                                        setJsonContent(editor.getJSON());
                                     }}
                                 />
+                                {errors.json_content && (
+                                    <div> {errors.json_content} </div>
+                                )}
                             </div>
                         </div>
                         <div className="mt-4">
