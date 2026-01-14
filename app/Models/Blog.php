@@ -6,6 +6,10 @@ use App\Actions\ContentTraveler;
 use App\Actions\CreateBlogExcerpt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Tiptap\Editor;
+use Tiptap\Extensions\StarterKit;
+use Tiptap\Nodes\CodeBlockHighlight;
+use Tiptap\Nodes\CodeBlockShiki;
 
 class Blog extends Model
 {
@@ -29,7 +33,17 @@ class Blog extends Model
     protected static function booted(): void
     {
         static::saving(function ($model) {
-            $model->content = (new \Tiptap\Editor)->setContent($model->json_content)->getHTML();
+            $model->content = (new Editor([
+                'extensions' => [
+                    new StarterKit([
+                        'codeBlock' => false,
+                    ]),
+                    new CodeBlockShiki([
+                        'theme' => 'catppuccin-macchiato',
+                        'defaultLanguage' => 'php'
+                    ]),
+                ],
+            ]))->setContent($model->json_content)->getHTML();
         });
     }
 
