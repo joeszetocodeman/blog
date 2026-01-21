@@ -1,7 +1,6 @@
 import { SimpleEditor } from '@/components/tiptap-templates/simple/simple-editor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
     Select,
     SelectContent,
@@ -41,55 +40,59 @@ export default function AdminBlogForm({
                 return (
                     <div>
                         <div className="space-y-6 rounded-lg border p-6">
-                            <div>
-                                <h2 className="mb-2 text-sm font-medium text-muted-foreground">
-                                    Title
-                                </h2>
-                                <Input
-                                    defaultValue={blog.title}
-                                    name="title"
-                                    onChange={() => {
-                                        slugEl.current!.value = kebabCase(
-                                            getData()['title'],
-                                        );
-                                    }}
-                                    className="text-2xl font-semibold"
-                                    placeholder="Enter blog title"
-                                />
-                            </div>
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                <div className="">
+                                    <h2 className="mb-2 text-sm font-medium text-muted-foreground">
+                                        Title
+                                    </h2>
+                                    <Input
+                                        defaultValue={blog.title}
+                                        name="title"
+                                        onChange={() => {
+                                            slugEl.current!.value = kebabCase(
+                                                getData()['title'],
+                                            );
+                                        }}
+                                        className="text-2xl font-semibold"
+                                        placeholder="Enter blog title"
+                                    />
+                                </div>
 
-                            <div>
-                                <h2 className="mb-2 text-sm font-medium text-muted-foreground">
-                                    Slug
-                                </h2>
-                                <Input
-                                    ref={slugEl}
-                                    defaultValue={blog.slug}
-                                    name="slug"
-                                    className="font-mono text-sm"
-                                    placeholder="enter-blog-slug"
-                                />
-                            </div>
+                                <div>
+                                    <h2 className="mb-2 text-sm font-medium text-muted-foreground">
+                                        Slug
+                                    </h2>
+                                    <Input
+                                        ref={slugEl}
+                                        defaultValue={blog.slug}
+                                        name="slug"
+                                        className="font-mono text-sm"
+                                        placeholder="enter-blog-slug"
+                                    />
+                                </div>
 
-                            <div>
-                                <h2 className="mb-2 text-sm font-medium text-muted-foreground">
-                                    Status
-                                </h2>
-                                <Select defaultValue={blog.status} name="status">
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select status" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="draft">
-                                            Draft
-                                        </SelectItem>
-                                        <SelectItem value="published">
-                                            Published
-                                        </SelectItem>
-                                    </SelectContent>
-                                </Select>
+                                <div>
+                                    <h2 className="mb-2 text-sm font-medium text-muted-foreground">
+                                        Status
+                                    </h2>
+                                    <Select
+                                        defaultValue={blog.status}
+                                        name="status"
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select status" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="draft">
+                                                Draft
+                                            </SelectItem>
+                                            <SelectItem value="published">
+                                                Published
+                                            </SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                             </div>
-
                             <div>
                                 <h2 className="mb-2 text-sm font-medium text-muted-foreground">
                                     Content

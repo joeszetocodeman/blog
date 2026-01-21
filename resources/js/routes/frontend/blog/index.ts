@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\BlogController::detail
-* @see app/Http/Controllers/BlogController.php:18
+* @see app/Http/Controllers/BlogController.php:19
 * @route '/blog/{blog}'
 */
 export const detail = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ detail.definition = {
 
 /**
 * @see \App\Http\Controllers\BlogController::detail
-* @see app/Http/Controllers/BlogController.php:18
+* @see app/Http/Controllers/BlogController.php:19
 * @route '/blog/{blog}'
 */
 detail.url = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -49,7 +49,7 @@ detail.url = (args: { blog: number | { id: number } } | [blog: number | { id: nu
 
 /**
 * @see \App\Http\Controllers\BlogController::detail
-* @see app/Http/Controllers/BlogController.php:18
+* @see app/Http/Controllers/BlogController.php:19
 * @route '/blog/{blog}'
 */
 detail.get = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -59,7 +59,7 @@ detail.get = (args: { blog: number | { id: number } } | [blog: number | { id: nu
 
 /**
 * @see \App\Http\Controllers\BlogController::detail
-* @see app/Http/Controllers/BlogController.php:18
+* @see app/Http/Controllers/BlogController.php:19
 * @route '/blog/{blog}'
 */
 detail.head = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -69,7 +69,7 @@ detail.head = (args: { blog: number | { id: number } } | [blog: number | { id: n
 
 /**
 * @see \App\Http\Controllers\BlogController::detail
-* @see app/Http/Controllers/BlogController.php:18
+* @see app/Http/Controllers/BlogController.php:19
 * @route '/blog/{blog}'
 */
 const detailForm = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -79,7 +79,7 @@ const detailForm = (args: { blog: number | { id: number } } | [blog: number | { 
 
 /**
 * @see \App\Http\Controllers\BlogController::detail
-* @see app/Http/Controllers/BlogController.php:18
+* @see app/Http/Controllers/BlogController.php:19
 * @route '/blog/{blog}'
 */
 detailForm.get = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -89,7 +89,7 @@ detailForm.get = (args: { blog: number | { id: number } } | [blog: number | { id
 
 /**
 * @see \App\Http\Controllers\BlogController::detail
-* @see app/Http/Controllers/BlogController.php:18
+* @see app/Http/Controllers/BlogController.php:19
 * @route '/blog/{blog}'
 */
 detailForm.head = (args: { blog: number | { id: number } } | [blog: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
