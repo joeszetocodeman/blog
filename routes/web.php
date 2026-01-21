@@ -1,12 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\UploadController;
-use App\Jobs\HtmlToJsonJob;
-use App\Models\Blog;
+use App\Http\Controllers\UploadController1;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Fortify\Features;
 
 Route::get('/', [\App\Http\Controllers\BlogController::class, 'index'])->name('home');
 Route::get('blog/{blog}', [\App\Http\Controllers\BlogController::class, 'detail'])->name('frontend.blog.detail');
@@ -22,7 +19,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('upload-endpoint', UploadController::class);
+    Route::post('upload-endpoint', UploadController1::class);
 });
 
 require __DIR__.'/settings.php';

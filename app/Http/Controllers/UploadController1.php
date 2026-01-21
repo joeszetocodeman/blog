@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class UploadController extends Controller
+class UploadController1 extends Controller
 {
     public function __invoke(Request $request)
     {
