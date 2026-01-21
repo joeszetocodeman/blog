@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Actions\ContentTraveler;
 use App\Actions\CreateBlogExcerpt;
+use App\Jobs\JsonToHtmlJob;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Tiptap\Editor;
@@ -32,18 +33,8 @@ class Blog extends Model
 
     protected static function booted(): void
     {
-        static::saving(function ($model) {
-            $model->content = (new Editor([
-                'extensions' => [
-                    new StarterKit([
-                        'codeBlock' => false,
-                    ]),
-                    new CodeBlockShiki([
-                        'theme' => 'catppuccin-macchiato',
-                        'defaultLanguage' => 'php'
-                    ]),
-                ],
-            ]))->setContent($model->json_content)->getHTML();
+        static::saved(function ($model) {
+            JsonToHtmlJob::dispatch($model->id);
         });
     }
 

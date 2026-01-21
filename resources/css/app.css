@@ -159,3 +159,7 @@ pre.shiki {
     @apply mr-4;
 }
 
+.prose p {
+    @apply my-4;
+}
+
