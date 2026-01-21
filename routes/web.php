@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\UploadController1;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,7 +19,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('upload-endpoint', UploadController1::class);
+    Route::post('upload-endpoint', UploadController::class);
 });
 
 require __DIR__.'/settings.php';
