@@ -26,6 +26,9 @@ class JsonToHtmlJob implements ShouldQueue
         if (!$blog) {
             return;
         }
+        if ( is_null($blog->json_content ) ) {
+            return;
+        }
 
         $blog->content = (new Editor([
             'extensions' => [

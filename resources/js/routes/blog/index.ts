@@ -82,7 +82,7 @@ index.form = indexForm
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::create
-* @see app/Http/Controllers/Admin/BlogController.php:38
+* @see app/Http/Controllers/Admin/BlogController.php:39
 * @route '/admin/blog/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -97,7 +97,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::create
-* @see app/Http/Controllers/Admin/BlogController.php:38
+* @see app/Http/Controllers/Admin/BlogController.php:39
 * @route '/admin/blog/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -106,7 +106,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::create
-* @see app/Http/Controllers/Admin/BlogController.php:38
+* @see app/Http/Controllers/Admin/BlogController.php:39
 * @route '/admin/blog/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -116,7 +116,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::create
-* @see app/Http/Controllers/Admin/BlogController.php:38
+* @see app/Http/Controllers/Admin/BlogController.php:39
 * @route '/admin/blog/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -126,7 +126,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::create
-* @see app/Http/Controllers/Admin/BlogController.php:38
+* @see app/Http/Controllers/Admin/BlogController.php:39
 * @route '/admin/blog/create'
 */
 const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -136,7 +136,7 @@ const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::create
-* @see app/Http/Controllers/Admin/BlogController.php:38
+* @see app/Http/Controllers/Admin/BlogController.php:39
 * @route '/admin/blog/create'
 */
 createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -146,7 +146,7 @@ createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::create
-* @see app/Http/Controllers/Admin/BlogController.php:38
+* @see app/Http/Controllers/Admin/BlogController.php:39
 * @route '/admin/blog/create'
 */
 createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -163,7 +163,7 @@ create.form = createForm
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::store
-* @see app/Http/Controllers/Admin/BlogController.php:45
+* @see app/Http/Controllers/Admin/BlogController.php:46
 * @route '/admin/blog'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -178,7 +178,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::store
-* @see app/Http/Controllers/Admin/BlogController.php:45
+* @see app/Http/Controllers/Admin/BlogController.php:46
 * @route '/admin/blog'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -187,7 +187,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::store
-* @see app/Http/Controllers/Admin/BlogController.php:45
+* @see app/Http/Controllers/Admin/BlogController.php:46
 * @route '/admin/blog'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -197,7 +197,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::store
-* @see app/Http/Controllers/Admin/BlogController.php:45
+* @see app/Http/Controllers/Admin/BlogController.php:46
 * @route '/admin/blog'
 */
 const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -207,7 +207,7 @@ const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 
 /**
 * @see \App\Http\Controllers\Admin\BlogController::store
-* @see app/Http/Controllers/Admin/BlogController.php:45
+* @see app/Http/Controllers/Admin/BlogController.php:46
 * @route '/admin/blog'
 */
 storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

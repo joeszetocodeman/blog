@@ -16,8 +16,18 @@ class BlogFactory extends Factory
             'title' => $this->faker->word(),
             'slug' => $this->faker->slug(),
             'content' => $this->faker->word(),
+            'status' => $this->faker->randomElement(['draft', 'published']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
+    }
+
+    public function publish()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 'published',
+            ];
+        });
     }
 }

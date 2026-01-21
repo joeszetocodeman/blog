@@ -19,6 +19,7 @@ readonly class BlogData implements Arrayable
         public string $slug,
         public string $content,
         public array $json_content,
+        public string $status,
         public Carbon $created_at,
     ) {
     }
@@ -32,6 +33,7 @@ readonly class BlogData implements Arrayable
             slug: $blog->slug,
             content: $blog->content,
             json_content: $blog->json_content,
+            status: $blog->status ?? 'draft',
             created_at: $blog->created_at ?? now(),
         );
     }
@@ -45,6 +47,7 @@ readonly class BlogData implements Arrayable
             slug: '',
             content: '',
             json_content: [],
+            status: 'draft',
             created_at: now(),
         );
     }
@@ -58,6 +61,7 @@ readonly class BlogData implements Arrayable
             'slug' => $this->slug,
             'content' => $this->content,
             'json_content' => $this->json_content,
+            'status' => $this->status,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

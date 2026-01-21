@@ -29,6 +29,7 @@ class BlogController
             'title' => 'required|string|max:80',
             'slug' => 'required|string|max:50',
             'json_content' => 'nullable|array',
+            'status' => 'required|in:draft,published',
         ]);
         $blog->update($validated);
 
@@ -48,6 +49,7 @@ class BlogController
             'title' => 'required|string|max:80',
             'slug' => 'required|string|max:50',
             'json_content' => 'required|array',
+            'status' => 'required|in:draft,published',
         ]);
 
         Blog::create($validated);

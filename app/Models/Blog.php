@@ -22,6 +22,7 @@ class Blog extends Model
         'content',
         'json_content',
         'excerpt',
+        'status',
     ];
 
     protected function casts(): array
@@ -33,10 +34,16 @@ class Blog extends Model
 
     protected static function booted(): void
     {
+        static::saving(function ($model) {
+            $model->content ??= '';
+        });
         static::saved(function ($model) {
             JsonToHtmlJob::dispatch($model->id);
         });
     }
 
-
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published');
+    }
 }

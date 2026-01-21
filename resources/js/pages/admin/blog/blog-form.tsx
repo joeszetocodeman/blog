@@ -1,6 +1,14 @@
 import { SimpleEditor } from '@/components/tiptap-templates/simple/simple-editor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { Form } from '@inertiajs/react';
 import { kebabCase } from 'lodash-es';
 import { useRef, useState } from 'react';
@@ -61,6 +69,25 @@ export default function AdminBlogForm({
                                     className="font-mono text-sm"
                                     placeholder="enter-blog-slug"
                                 />
+                            </div>
+
+                            <div>
+                                <h2 className="mb-2 text-sm font-medium text-muted-foreground">
+                                    Status
+                                </h2>
+                                <Select defaultValue={blog.status} name="status">
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="draft">
+                                            Draft
+                                        </SelectItem>
+                                        <SelectItem value="published">
+                                            Published
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             <div>
