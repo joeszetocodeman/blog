@@ -32,7 +32,7 @@ readonly class BlogData implements Arrayable
             excerpt: $blog->excerpt ?? '',
             slug: $blog->slug,
             content: $blog->content,
-            json_content: $blog->json_content,
+            json_content: $blog->json_content ?? [],
             status: $blog->status ?? 'draft',
             created_at: $blog->created_at ?? now(),
         );
@@ -60,7 +60,7 @@ readonly class BlogData implements Arrayable
             'excerpt' => $this->excerpt,
             'slug' => $this->slug,
             'content' => $this->content,
-            'json_content' => $this->json_content,
+            'json_content' => json_encode($this->json_content),
             'status' => $this->status,
             'created_at' => $this->created_at->toDateTimeString(),
         ];

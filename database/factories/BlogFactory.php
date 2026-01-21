@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Blog;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 
 class BlogFactory extends Factory
@@ -16,7 +17,20 @@ class BlogFactory extends Factory
             'title' => $this->faker->word(),
             'slug' => $this->faker->slug(),
             'content' => $this->faker->word(),
-            'status' => $this->faker->randomElement(['draft', 'published']),
+            'json_content' => [
+                'content' => [
+                    [
+                        'type' => 'paragraph',
+                        'content' => [
+                            [
+                                'type' => 'text',
+                                'text' => $this->faker->sentence(),
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'status' => Arr::random(['draft', 'published']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

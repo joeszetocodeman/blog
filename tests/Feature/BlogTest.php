@@ -73,13 +73,13 @@ it('admin can update blog status from draft to published', function () {
     $blog = Blog::factory()->create(['status' => 'draft']);
 
     actingAs($user)->put(route('blog.update', $blog), [
-        'title' => $blog->title,
-        'slug' => $blog->slug,
+        'title' => 'Hello',
+        'slug' => 'hi',
         'json_content' => $blog->json_content,
         'status' => 'published',
     ])->assertRedirect();
 
-    expect($blog->fresh()->status)->toBe('published');
+    expect($blog->refresh()->status)->toBe('published');
 });
 
 it('admin can update blog status from published to draft', function () {
@@ -87,8 +87,8 @@ it('admin can update blog status from published to draft', function () {
     $blog = Blog::factory()->create(['status' => 'published']);
 
     actingAs($user)->put(route('blog.update', $blog), [
-        'title' => $blog->title,
-        'slug' => $blog->slug,
+        'title' => 'heelo',
+        'slug' => 'hii',
         'json_content' => $blog->json_content,
         'status' => 'draft',
     ])->assertRedirect();

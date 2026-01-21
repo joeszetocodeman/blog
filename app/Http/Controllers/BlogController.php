@@ -11,7 +11,8 @@ class BlogController
     public function index()
     {
         return Inertia::render('blog/index', [
-            'blogs' => Blog::published()->latest()->get()->map(fn($blog) => BlogData::fromModel($blog)),
+            'blogs' => Blog::latest()->published()->get()
+                ->map(fn($blog) => BlogData::fromModel($blog))->all(),
         ]);
     }
 
