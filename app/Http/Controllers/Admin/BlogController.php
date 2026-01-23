@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Datas\BlogData;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
 class BlogController
@@ -18,8 +19,10 @@ class BlogController
 
     public function show(Blog $blog)
     {
+        $previewUrl = URL::signedRoute('frontend.blog.preview', ['blog' => $blog->id]);
         return Inertia::render('admin/blog/detail', [
             'blog' => $blog,
+            'previewUrl' => $previewUrl,
         ]);
     }
 

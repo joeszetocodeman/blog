@@ -1,25 +1,23 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import AppLayout from '@/layouts/app-layout';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { ArrowLeft, Save } from 'lucide-react';
-import { Form } from '@inertiajs/react'
-import AdminBlogForm from '@/pages/admin/blog/blog-form';
-import BlogController from '@/actions/App/Http/Controllers/BlogController';
 import BlogAdminController from '@/actions/App/Http/Controllers/Admin/BlogController';
+import { Button } from '@/components/ui/button';
+import AppLayout from '@/layouts/app-layout';
+import AdminBlogForm from '@/pages/admin/blog/blog-form';
+import { Head, Link } from '@inertiajs/react';
+import { ArrowLeft } from 'lucide-react';
 export default function AdminBlogDetailPage({
     blog,
+    previewUrl,
 }: {
     blog: App.Datas.BlogData;
+    previewUrl: string;
 }) {
     return (
         <AppLayout>
             <Head title={blog.title} />
             <div className="flex h-full flex-1 flex-col gap-6 overflow-x-auto rounded-xl p-4">
                 <div className="flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-4 justify-between w-full">
-                        <div className='flex'>
+                    <div className="flex w-full items-center justify-between gap-4">
+                        <div className="flex">
                             <Link href="/admin/blog">
                                 <Button variant="ghost" size="icon">
                                     <ArrowLeft className="h-4 w-4" />
@@ -29,16 +27,19 @@ export default function AdminBlogDetailPage({
                         </div>
                         <div>
                             <Button asChild>
-                                <a href={BlogController.detail( blog.id ).url} target='_blank'>
+                                <a href={previewUrl} target="_blank">
                                     View Blog
                                 </a>
                             </Button>
                         </div>
                     </div>
-
                 </div>
 
-                <AdminBlogForm blog={blog} action={BlogAdminController.update(blog.id).url} method="PUT" />
+                <AdminBlogForm
+                    blog={blog}
+                    action={BlogAdminController.update(blog.id).url}
+                    method="PUT"
+                />
             </div>
         </AppLayout>
     );

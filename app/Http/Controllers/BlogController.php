@@ -18,7 +18,6 @@ class BlogController
 
     public function detail(Blog $blog)
     {
-        // Only show published blogs publicly
         abort_if($blog->status !== 'published', 404);
 
         return Inertia::render('blog/detail', [
