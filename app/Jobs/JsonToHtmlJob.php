@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Actions\JsonToHtmlAction;
 use App\Models\Blog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use Tiptap\Editor;
 use Tiptap\Extensions\StarterKit;
 use Tiptap\Nodes\CodeBlockShiki;
+use Tiptap\Nodes\Image;
 
 class JsonToHtmlJob implements ShouldQueue
 {
@@ -20,27 +22,17 @@ class JsonToHtmlJob implements ShouldQueue
     {
     }
 
-    public function handle(): void
+    public function handle(JsonToHtmlAction $action): void
     {
         $blog = Blog::find($this->blogId);
         if (!$blog) {
             return;
         }
-        if ( is_null($blog->json_content ) ) {
+        if (is_null($blog->json_content)) {
             return;
         }
 
-        $blog->content = (new Editor([
-            'extensions' => [
-                new StarterKit([
-                    'codeBlock' => false,
-                ]),
-                new CodeBlockShiki([
-                    'theme' => 'catppuccin-macchiato',
-                    'defaultLanguage' => 'php'
-                ]),
-            ],
-        ]))->setContent($blog->json_content)->getHTML();
+        $blog->content = $action->handle($blog->json_content);
 
         $blog->saveQuietly();
     }
