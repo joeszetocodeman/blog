@@ -1,12 +1,9 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import AppLayout from '@/layouts/app-layout';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { ArrowLeft, Save } from 'lucide-react';
-import { Form } from '@inertiajs/react'
 import BlogController from '@/actions/App/Http/Controllers/Admin/BlogController';
+import { Button } from '@/components/ui/button';
+import AppLayout from '@/layouts/app-layout';
 import AdminBlogForm from '@/pages/admin/blog/blog-form';
+import { Head, Link } from '@inertiajs/react';
+import { ArrowLeft } from 'lucide-react';
 export default function AdminBlogCreatePage({
     blog,
 }: {
@@ -25,9 +22,12 @@ export default function AdminBlogCreatePage({
                         </Link>
                         <h1 className="text-3xl font-bold">Blog Create</h1>
                     </div>
-
                 </div>
-                <AdminBlogForm blog={blog} action={ BlogController.store().url } method="POST" />
+                <AdminBlogForm
+                    blog={blog}
+                    action={BlogController.store().url}
+                    method="POST"
+                />
             </div>
         </AppLayout>
     );

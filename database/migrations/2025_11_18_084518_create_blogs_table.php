@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('title', 80);
             $table->string('slug', 50)->index();
-            $table->text('content');
+            $table->longText('content');
             $table->timestamps();
         });
     }
