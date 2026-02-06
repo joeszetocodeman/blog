@@ -36,7 +36,7 @@ class BlogController
         ]);
         $blog->update($validated);
 
-        return back();
+        return back()->with('success', 'Blog updated successfully');
     }
 
     public function create()
