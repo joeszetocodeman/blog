@@ -38,8 +38,9 @@ export default function AdminBlogForm({
         >
             {({ getData, errors }) => {
                 return (
-                    <div>
-                        <div className="space-y-6 rounded-lg border p-6">
+                    <>
+                        <div>
+                            <div className="space-y-6 rounded-lg border p-6">
                             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                                 <div className="">
                                     <h2 className="mb-2 text-sm font-medium text-muted-foreground">
@@ -110,10 +111,14 @@ export default function AdminBlogForm({
                                 )}
                             </div>
                         </div>
-                        <div className="mt-4">
-                            <Button>submit</Button>
+                        <div className="mb-20"></div>
+                    </div>
+                    <div className="fixed bottom-0 left-0 right-0 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                        <div className="mx-auto flex max-w-screen-2xl items-center justify-end gap-4 p-4">
+                            <Button type="submit">Save Changes</Button>
                         </div>
                     </div>
+                    </>
                 );
             }}
         </Form>
