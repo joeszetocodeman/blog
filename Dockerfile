@@ -3,7 +3,7 @@ FROM serversideup/php:8.5-fpm-nginx
 # Install Node.js
 USER root
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
-    && apt-get install -y nodejs
+    && apt-get install -y nodejs vim
 
 USER www-data
 
